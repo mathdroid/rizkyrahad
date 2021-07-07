@@ -556,7 +556,8 @@
 }
 
 .notion-page {
-  width: var(--notion-max-width);
+  max-width: 80ch;
+  /* width: var(--notion-max-width); */
   padding-left: calc(min(12px, 8vw));
   padding-right: calc(min(12px, 8vw));
 }
