@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { Flex, Heading, Icon, Stack, Text, Image } from "@chakra-ui/react";
 import {
   FaInstagram,
@@ -6,7 +7,7 @@ import {
   FaEnvelope,
 } from "react-icons/fa";
 import { Link } from "../components/Link";
-export default ({
+export const SiteLayout = ({
   children,
   title,
   subtitle,
@@ -18,6 +19,9 @@ export default ({
   iconsize,
 }) => (
   <Flex boxSizing="content-box" width="100vw" flexWrap="wrap">
+    <Head>
+      <title>Rizky Rahadianto - Indonesia // Filmmaker</title>
+    </Head>
     <Stack
       spacing="2rem"
       as="header"
@@ -67,3 +71,5 @@ export default ({
     </Flex>
   </Flex>
 );
+
+export default SiteLayout;

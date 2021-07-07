@@ -18,6 +18,7 @@ import { getMeta, getPosts, getTable } from "../notion";
 import { NotionAPI } from "notion-client";
 import { getSSRTable } from "../notion/ssr";
 import React from "react";
+import Head from "next/head";
 
 const parseYoutubeURL = (youtubeURL: string) => {
   const [_base, params] = youtubeURL.split("watch?");
@@ -49,6 +50,7 @@ export async function getStaticProps({ params: { slug } }) {
       meta,
       recordMap,
     },
+    revalidate: 60,
   };
 }
 
@@ -71,8 +73,11 @@ const Post = ({ post, meta, recordMap }) => {
   const embedId = post.youtube && parseYoutubeURL(post.youtube);
   return (
     <>
+      <Head>
+        <title>Rizky Rahad - {post.title}</title>
+      </Head>
       <SiteLayout {...meta}>
-        <Box p="4rem" width="100%">
+        <Box pt="4rem" px="4rem" pb={["16rem", "8rem", "4rem"]} width="100%">
           <Box position="relative" paddingTop="56.25%" width="100%">
             {post.youtube ? (
               <iframe

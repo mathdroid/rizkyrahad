@@ -14,6 +14,7 @@ export async function getStaticProps() {
       posts,
       meta,
     },
+    revalidate: 60,
   };
 }
 function PostItem({ post }) {
@@ -57,7 +58,12 @@ function PostItem({ post }) {
 function HomePage({ posts, meta }) {
   return (
     <Shell {...meta}>
-      <SimpleGrid p="4rem"  columns={meta.columns} spacing={5} minChildWidth="300px">
+      <SimpleGrid
+        p="4rem"
+        columns={meta.columns}
+        spacing={5}
+        minChildWidth="300px"
+      >
         {posts.map((post) => (
           <PostItem post={post} />
         ))}

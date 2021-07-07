@@ -1,4 +1,15 @@
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+// core styles shared by all of react-notion-x (required)
+import "../styles/notion.css";
+
+// used for code syntax highlighting (optional)
+import "prismjs/themes/prism-tomorrow.css";
+
+// used for collection views (optional)
+import "rc-dropdown/assets/index.css";
+
+// used for rendering equations (optional)
+import "katex/dist/katex.min.css";
 import { Fonts } from "../styles/font-face";
 const theme = extendTheme({
   fonts: {

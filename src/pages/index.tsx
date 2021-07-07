@@ -14,6 +14,7 @@ export async function getStaticProps() {
       posts,
       meta,
     },
+    revalidate: 60,
   };
 }
 function PostItem({ post }) {
