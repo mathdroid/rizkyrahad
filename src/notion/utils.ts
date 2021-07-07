@@ -1,4 +1,4 @@
-import { DecorationType, ColumnType, RowContentType, RowType } from './types';
+import { DecorationType, ColumnType, RowContentType, RowType } from "./types";
 
 export const idToUuid = (path: string) =>
   `${path.substr(0, 8)}-${path.substr(8, 4)}-${path.substr(
@@ -8,14 +8,14 @@ export const idToUuid = (path: string) =>
 
 export const parsePageId = (id: string) => {
   if (id) {
-    const rawId = id.replace(/-/g, '').slice(-32);
+    const rawId = id.replace(/-/g, "").slice(-32);
     return idToUuid(rawId);
   }
   return undefined;
 };
 
 const getTextContent = (text: DecorationType[]) => {
-  return text.reduce((prev, current) => prev + current[0], '');
+  return text.reduce((prev, current) => prev + current[0], "");
 };
 
 export const getNotionValue = (
@@ -24,30 +24,30 @@ export const getNotionValue = (
   row: RowType
 ): RowContentType => {
   switch (type) {
-    case 'text':
+    case "text":
       return getTextContent(val);
-    case 'person':
+    case "person":
       return (
         val.filter((v) => v.length > 1).map((v) => v[1]![0][1] as string) || []
       );
-    case 'checkbox':
-      return val[0][0] === 'Yes';
-    case 'date':
-      if (val[0][1]![0][0] === 'd') return val[0]![1]![0]![1]!.start_date;
-      else return '';
-    case 'title':
+    case "checkbox":
+      return val[0][0] === "Yes";
+    case "date":
+      if (val[0][1]![0][0] === "d") return val[0]![1]![0]![1]!.start_date;
+      else return "";
+    case "title":
       return getTextContent(val);
-    case 'select':
+    case "select":
       return val[0][0];
-    case 'multi_select':
-      return val[0][0].split(',') as string[];
-    case 'number':
+    case "multi_select":
+      return val[0][0].split(",") as string[];
+    case "number":
       return Number(val[0][0]);
-    case 'relation':
+    case "relation":
       return val
-        .filter(([symbol]) => symbol === '‣')
+        .filter(([symbol]) => symbol === "‣")
         .map(([_, relation]) => relation![0][1] as string);
-    case 'file':
+    case "file":
       return val
         .filter((v) => v.length > 1)
         .map((v) => {
@@ -55,21 +55,23 @@ export const getNotionValue = (
 
           const url = new URL(
             `https://www.notion.so${
-              rawUrl.startsWith('/image')
+              rawUrl.startsWith("/image")
                 ? rawUrl
                 : `/image/${encodeURIComponent(rawUrl)}`
             }`
           );
 
-          url.searchParams.set('table', 'block');
-          url.searchParams.set('id', row.value.id);
-          url.searchParams.set('cache', 'v2');
+          url.searchParams.set("table", "block");
+          url.searchParams.set("id", row.value.id);
+          url.searchParams.set("cache", "v2");
 
           return { name: v[0] as string, url: url.toString(), rawUrl };
         });
+    case "url":
+      return val[0][0];
     default:
       // eslint-disable-next-line no-console
       console.log({ val, type });
-      return 'Not supported';
+      return "Not supported";
   }
 };

@@ -1,18 +1,18 @@
-type BoldFormatType = ['b'];
-type ItalicFormatType = ['i'];
-type StrikeFormatType = ['s'];
-type CodeFormatType = ['c'];
-type LinkFormatType = ['a', string];
+type BoldFormatType = ["b"];
+type ItalicFormatType = ["i"];
+type StrikeFormatType = ["s"];
+type CodeFormatType = ["c"];
+type LinkFormatType = ["a", string];
 type DateFormatType = [
-  'd',
+  "d",
   {
-    type: 'date';
+    type: "date";
     start_date: string;
     date_format: string;
   }
 ];
-type UserFormatType = ['u', string];
-type PageFormatType = ['p', string];
+type UserFormatType = ["u", string];
+type PageFormatType = ["p", string];
 type SubDecorationType =
   | BoldFormatType
   | ItalicFormatType
@@ -27,16 +27,17 @@ type AdditionalDecorationType = [string, SubDecorationType[]];
 export type DecorationType = BaseDecorationType | AdditionalDecorationType;
 
 export type ColumnType =
-  | 'select'
-  | 'text'
-  | 'date'
-  | 'person'
-  | 'checkbox'
-  | 'title'
-  | 'multi_select'
-  | 'number'
-  | 'relation'
-  | 'file';
+  | "select"
+  | "text"
+  | "date"
+  | "person"
+  | "checkbox"
+  | "title"
+  | "multi_select"
+  | "number"
+  | "relation"
+  | "file"
+  | "url";
 
 export type ColumnSchemaType = {
   name: string;
@@ -148,7 +149,7 @@ export interface LoadPageChunkData {
   };
 }
 
-type CollectionViewType = 'table' | 'gallery';
+type CollectionViewType = "table" | "gallery";
 
 export interface CollectionData {
   recordMap: {

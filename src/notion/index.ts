@@ -13,6 +13,11 @@ export const getTable = async (tableId: string) => {
   return await fetchNotionAPI(tableEndpoint);
 };
 
+export const getPage = async (pageId: string) => {
+  const pageEndpoint = `/api/notion/page/${pageId}`;
+  return await fetchNotionAPI(pageEndpoint);
+};
+
 const parseMeta = (notionTable: any[]) => {
   const result = {};
   for (const obj of notionTable) {
@@ -41,9 +46,12 @@ const parseMeta = (notionTable: any[]) => {
 export const getMeta = async () => {
   const metaPageId = `3e28ec13b74f408f99c2e514918fbce8`;
   const table = await getTable(metaPageId);
-  console.log(table);
   const meta = parseMeta(table);
 
-  console.log(meta);
   return meta;
+};
+
+export const getPosts = async () => {
+  const postsTableId = `a33808e821de4b97938c01373c0a6026`;
+  return await getTable(postsTableId);
 };

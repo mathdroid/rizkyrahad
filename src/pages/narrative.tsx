@@ -6,7 +6,7 @@ import { getMeta, getPosts, getTable } from "../notion";
 
 export async function getStaticProps() {
   const posts = (await getPosts()).filter(
-    (post) => post["Type"] === "Documentary"
+    (post) => post["Type"] === "Narrative"
   );
   const meta = await getMeta();
   return {
