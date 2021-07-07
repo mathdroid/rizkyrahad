@@ -1,4 +1,5 @@
 import fetch from "node-fetch";
+import { getSSRTable } from "./ssr";
 
 const fetchNotionAPI = async (endpoint: string) => {
   const baseURL =
@@ -45,7 +46,7 @@ const parseMeta = (notionTable: any[]) => {
 
 export const getMeta = async () => {
   const metaPageId = `3e28ec13b74f408f99c2e514918fbce8`;
-  const table = await getTable(metaPageId);
+  const table = await getSSRTable(metaPageId);
   const meta = parseMeta(table);
 
   return meta;
@@ -53,5 +54,5 @@ export const getMeta = async () => {
 
 export const getPosts = async () => {
   const postsTableId = `a33808e821de4b97938c01373c0a6026`;
-  return await getTable(postsTableId);
+  return await getSSRTable(postsTableId);
 };

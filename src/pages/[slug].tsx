@@ -3,13 +3,14 @@ import { NotionRenderer } from "react-notion-x";
 import SiteLayout from "../layouts/SiteLayout";
 import { Image, Stack, Text, Heading } from "@chakra-ui/react";
 import { Link } from "../components/Link";
-import { getMeta, getTable } from "../notion";
+import { getMeta, getPosts, getTable } from "../notion";
 import { NotionAPI } from "notion-client";
+import { getSSRTable } from "../notion/ssr";
 
-export const getAllPosts = async () => {
-  const postsTableId = `a33808e821de4b97938c01373c0a6026`;
-  const posts = await getTable(postsTableId);
-  return posts.map((obj) =>
+export async function getStaticProps({ params: { slug } }) {
+  const notion = new NotionAPI();
+
+  const posts: any[] = (await getPosts()).map((obj) =>
     Object.entries(obj).reduce(
       (acc, [currentKey, currentValue]) => ({
         ...acc,
@@ -18,32 +19,32 @@ export const getAllPosts = async () => {
       {}
     )
   );
-};
-
-export async function getStaticProps({ params: { slug } }) {
-  const notion = new NotionAPI();
-
-  const posts = await getAllPosts();
-  console.log(posts);
   const post = posts.find((post) => post.slug === slug);
   const recordMap = await notion.getPage(post.id);
-  const blocks = await getTable(post.id);
   const meta = await getMeta();
   return {
     props: {
       post,
       meta,
-      blocks,
       recordMap,
     },
   };
 }
 
 export async function getStaticPaths() {
-  const posts = await getAllPosts();
+  const posts: any[] = (await getPosts()).map((obj) =>
+    Object.entries(obj).reduce(
+      (acc, [currentKey, currentValue]) => ({
+        ...acc,
+        [currentKey.toLowerCase()]: currentValue,
+      }),
+      {}
+    )
+  );
+  console.log(posts);
   return { paths: posts.map((p) => `/${p.slug}`), fallback: false };
 }
-const Post = ({ post, blocks, meta, recordMap }) => {
+const Post = ({ post, meta, recordMap }) => {
   const router = useRouter();
   const { slug } = router.query;
   return (
