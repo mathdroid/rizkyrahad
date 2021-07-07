@@ -15,6 +15,7 @@
     "framer-motion": "^4",
     "isomorphic-unfetch": "^3.1.0",
     "next": "latest",
+    "next-seo": "^4.26.0",
     "node-fetch": "^2.6.1",
     "notion-client": "^4.7.3",
     "notion-utils": "^4.7.3",

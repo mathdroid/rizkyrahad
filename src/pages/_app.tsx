@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 // core styles shared by all of react-notion-x (required)
 import "../styles/notion.css";
@@ -36,10 +37,32 @@ const theme = extendTheme({
 });
 function MyApp({ Component, pageProps }) {
   return (
-    <ChakraProvider theme={theme}>
-      <Fonts />
-      <Component {...pageProps} />
-    </ChakraProvider>
+    <>
+      <Head>
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
+      </Head>
+      <ChakraProvider theme={theme}>
+        <Fonts />
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </>
   );
 }
 export default MyApp;
