@@ -49,7 +49,7 @@ const About = ({ meta, recordMap }) => {
         }}
       />
       <SiteLayout {...meta}>
-        <Box p="4rem" textAlign="left">
+        <Box p="4rem">
           <NotionRenderer recordMap={recordMap} />
         </Box>
       </SiteLayout>
