@@ -17,11 +17,18 @@ export default ({
   logo,
   iconsize,
 }) => (
-  <Flex boxSizing="content-box" minWidth="900px" maxWidth="1200px" p="80px">
-    <Stack spacing="20px" as="header" dir="column" w="242px" flexShrink={0}>
+  <Flex boxSizing="content-box" width="100vw" flexWrap="wrap">
+    <Stack
+      spacing="2rem"
+      as="header"
+      dir="column"
+      flexGrow={1}
+      flexBasis="250px"
+      p="4rem"
+    >
       <Stack>
         <Link href={"/"}>
-          <Image src={logo.url} alt={title} title={title} />
+          <Image src={logo.url} alt={title} title={title} maxWidth="250px" />
         </Link>
         <p>{subtitle}</p>
       </Stack>
@@ -55,7 +62,14 @@ export default ({
         </Link>
       </Stack>
     </Stack>
-    <Flex as="main" dir="column" ml="20px">
+    <Flex
+      as="main"
+      dir="column"
+      flexGrow={999}
+      flexBasis={0}
+      minW="50%"
+      p="4rem"
+    >
       {children}
     </Flex>
   </Flex>

@@ -28,12 +28,14 @@ function PostItem({ post }) {
         onMouseLeave={() => setIsHovered(false)}
         cursor="pointer"
         transition="top 50ms ease-out,left 50ms ease-out"
-        backgroundColor="rgba(175,175,175,.1)"
+        // backgroundColor="rgba(175,175,175,.1)"
+        backgroundColor="white"
       >
         <Image
           transition="all .2s ease"
           filter={isHovered ? "brightness(40%)" : null}
           src={post["Thumbnail"][0].url}
+          objectFit="cover"
         />
         <Heading
           opacity={isHovered ? 1 : 0}
@@ -55,7 +57,7 @@ function PostItem({ post }) {
 function HomePage({ posts, meta }) {
   return (
     <Shell {...meta}>
-      <SimpleGrid columns={meta.columns} spacing={5}>
+      <SimpleGrid columns={meta.columns} spacing={5} minChildWidth="200px">
         {posts.map((post) => (
           <PostItem post={post} />
         ))}

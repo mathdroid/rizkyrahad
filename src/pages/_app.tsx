@@ -11,6 +11,9 @@ const theme = extendTheme({
       "html, body": {
         fontSize: "sm",
       },
+      body: {
+        minHeight: "100vh",
+      },
       p: {
         mb: "13px",
       },
