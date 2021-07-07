@@ -62,14 +62,7 @@ export default ({
         </Link>
       </Stack>
     </Stack>
-    <Flex
-      as="main"
-      dir="column"
-      flexGrow={999}
-      flexBasis={0}
-      minW="50%"
-      p="4rem"
-    >
+    <Flex as="main" dir="column" flexGrow={999} flexBasis={0} minW="50%">
       {children}
     </Flex>
   </Flex>

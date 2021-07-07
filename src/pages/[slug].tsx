@@ -72,19 +72,30 @@ const Post = ({ post, meta, recordMap }) => {
   return (
     <>
       <SiteLayout {...meta}>
-        {post.youtube ? (
-          <iframe
-            width="853"
-            height="480"
-            src={`https://www.youtube.com/embed/${embedId}`}
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            title="Embedded youtube"
-          />
-        ) : (
-          <Image src={post.thumbnail[0].url} />
-        )}
+        <Box p="4rem" width="100%">
+          <Box position="relative" paddingTop="56.25%" width="100%">
+            {post.youtube ? (
+              <iframe
+                src={`https://www.youtube.com/embed/${embedId}`}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title="Embedded youtube"
+                width="100%"
+                height="100%"
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  bottom: 0,
+                  right: 0,
+                }}
+              />
+            ) : (
+              <Image src={post.thumbnail[0].url} />
+            )}
+          </Box>
+        </Box>
 
         <Box
           position={"absolute"}
