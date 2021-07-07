@@ -2,7 +2,7 @@ import { SimpleGrid, Box, Image, Heading } from "@chakra-ui/react";
 import Link from "next/link";
 import { useState } from "react";
 import Shell from "../layouts/SiteLayout";
-import { getMeta, getPosts, getTable } from "../notion";
+import { getMeta, getPosts } from "../notion";
 
 export async function getStaticProps() {
   const posts = (await getPosts()).filter(
@@ -28,8 +28,7 @@ function PostItem({ post }) {
         onMouseLeave={() => setIsHovered(false)}
         cursor="pointer"
         transition="top 50ms ease-out,left 50ms ease-out"
-        // backgroundColor="rgba(175,175,175,.1)"
-        backgroundColor="white"
+        background="white"
       >
         <Image
           transition="all .2s ease"
@@ -38,6 +37,7 @@ function PostItem({ post }) {
           objectFit="cover"
         />
         <Heading
+          maxW="300px"
           opacity={isHovered ? 1 : 0}
           position="absolute"
           margin={0}
@@ -57,7 +57,7 @@ function PostItem({ post }) {
 function HomePage({ posts, meta }) {
   return (
     <Shell {...meta}>
-      <SimpleGrid columns={meta.columns} spacing={5} minChildWidth="200px">
+      <SimpleGrid columns={meta.columns} spacing={5} minChildWidth="300px">
         {posts.map((post) => (
           <PostItem post={post} />
         ))}
