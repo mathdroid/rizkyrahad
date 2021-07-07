@@ -98,7 +98,12 @@ const Post = ({ post, meta, recordMap }) => {
       />
       <SiteLayout {...meta}>
         <Box pt="4rem" px="4rem" pb={["16rem", "8rem", "4rem"]} width="100%">
-          <Box position="relative" paddingTop="56.25%" width="100%">
+          <Box
+            position="relative"
+            paddingTop="56.25%"
+            width="100%"
+            minWidth="300px"
+          >
             {post.youtube ? (
               <iframe
                 src={`https://www.youtube.com/embed/${embedId}`}
