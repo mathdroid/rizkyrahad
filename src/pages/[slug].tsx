@@ -19,6 +19,7 @@ import { NotionAPI } from "notion-client";
 import { getSSRTable } from "../notion/ssr";
 import React from "react";
 import Head from "next/head";
+import { NextSeo } from "next-seo";
 
 const parseYoutubeURL = (youtubeURL: string) => {
   const [_base, params] = youtubeURL.split("watch?");
@@ -73,9 +74,28 @@ const Post = ({ post, meta, recordMap }) => {
   const embedId = post.youtube && parseYoutubeURL(post.youtube);
   return (
     <>
-      <Head>
-        <title>Rizky Rahad - {post.title}</title>
-      </Head>
+      <NextSeo
+        title={`Rizky Rahad - ${post.title}`}
+        description="RIZKY RAHAD is an independent director, producer, and fixer based in Jakarta, Indonesia."
+        openGraph={{
+          url: "https://rizkyrahad.com/" + post.slug,
+          title: `Rizky Rahad - ${post.title}`,
+          images: [
+            {
+              url: post.thumbnail[0].url,
+              width: 800,
+              height: 600,
+              alt: `Rizky Rahad - ${post.title}`,
+            },
+          ],
+          site_name: `Rizky Rahad - ${post.title}`,
+        }}
+        twitter={{
+          handle: "@rich_rahad",
+          site: "@rich_rahad",
+          cardType: "summary_large_image",
+        }}
+      />
       <SiteLayout {...meta}>
         <Box pt="4rem" px="4rem" pb={["16rem", "8rem", "4rem"]} width="100%">
           <Box position="relative" paddingTop="56.25%" width="100%">
